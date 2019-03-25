@@ -15,7 +15,7 @@ var promise1 = new Promise(function(resolve, reject) {
             rankings[i] = $(this).text();
         });
 
-        rankings.join(', ');
+        //rankings.join(', ');
         //console.log(rankings);
         resolve(rankings);
     });
@@ -38,14 +38,11 @@ promise1.then(function(value) {
                 let result = new Object();
 
                 $('#nx_related_keywords > dl > dd.lst_relate._related_keyword_list > ul').each(function(j, elem) {
-                    //related[i][j] = $(this).text();
-                    //console.log($(this).text());
-                    tmp[j] = $(this).text();
+                    tmp[j] = $(this).text().substring(2,$(this).text().length-2);
                 });
 
                 result.realtime = value[i];
                 result.relatedKey = tmp;
-
                 resolve(result);
                 
             });
@@ -57,7 +54,7 @@ promise1.then(function(value) {
 
         for(let i=0;i<rel.length;i++){
             console.log(`${i+1}위 ${rel[i].realtime}`);
-            console.log(rel[i].relatedKey);
+            console.log((rel[i].relatedKey+"").split('   '));
         }
 
     });
