@@ -12,7 +12,7 @@ async function rankRelated(){
         }
     };
 
-    rp(options).then(async ($) => {
+    let promise1 = rp(options).then(async ($) => {
         let results = [];
         let result = new Object();
         let rankings = [];
@@ -48,13 +48,18 @@ async function rankRelated(){
             });
         }
 
-        console.log(results);
+        //console.log(results);
         return results;
     }).catch((err) => {
         console.log('rp error11');
         return -1;
     });
 
+    return promise1;
 }
 
-console.log(await rankRelated());
+rankRelated().then((value)=>{
+    console.log(value)
+    export {value};
+});
+
